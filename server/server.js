@@ -1,12 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
 import pool from "./db/db.js";
+import todoRoutes from "./routes/todoRoutes.js"
 
+// stuyffffffff
 dotenv.config();
-
+const PORT = process.env.PORT || 4001;
 const app = express();
-
 app.use(express.json());
+
+
+
+// Routes
+
+app.use("/api", todoRoutes)
 
 app.get("/", async (req, res) => {
   try {
@@ -19,9 +26,8 @@ app.get("/", async (req, res) => {
 });
 
 
-
-const PORT = process.env.PORT || 4001;
-
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+export default app
